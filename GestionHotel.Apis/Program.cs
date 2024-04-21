@@ -1,5 +1,7 @@
 using GestionHotel.Apis;
 using GestionHotel.Apis.Endpoints.Booking;
+using System;
+using MySql.Data.MySqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,3 +25,14 @@ app.UseHttpsRedirection();
 
 app.MapBookingsEndpoints();
 app.Run();
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var connString = "Server=127.0.0.1;Port=3306;Database=hotel_management;Uid=hotel_management;Pwd=Bakugo34970!;";
+        using var conn = new MySqlConnection(connString);
+        conn.Open();
+        Console.WriteLine("Connected to MySQL database!");
+    }
+}
